@@ -13,6 +13,10 @@ module.exports = {
     // timeout: 100000
   },
 
+  // Set where to build the smart contract
+  contracts_directory: './contracts/',
+  contracts_build_directory: './src/abis/',
+
   // Configure your compilers
   compilers: {
     solc: {
