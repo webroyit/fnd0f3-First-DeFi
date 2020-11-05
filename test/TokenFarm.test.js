@@ -8,6 +8,11 @@ require('chai')
   .use(require('chai-as-promised'))
   .should();
 
+// Convert wei to eth
+function weiToTokens(n) {
+  return web3.utils.toWei(n, 'ether');
+}
+
 contract('TokenFarm', ([owner, investor]) => {
   let daiToken;
   let dappToken;
@@ -20,10 +25,10 @@ contract('TokenFarm', ([owner, investor]) => {
     tokenFarm = await TokenFarm.new(dappToken.address, daiToken.address);
 
     // Transfer all Dapp tokens to farm (1 million)
-    await dappToken.transfer(tokenFarm.address, '1000000000000000000000000');
+    await dappToken.transfer(tokenFarm.address, weiToTokens('1000000'));
 
     // Transfer 100 Fake DAI Tokens to investor
-    await daiToken.transfer(investor, '1000000000000000000000000', { from: owner });
+    await daiToken.transfer(investor, weiToTokens('100'), { from: owner });
   })
 
   describe('Fake Dai deployement', async () => {
@@ -48,7 +53,7 @@ contract('TokenFarm', ([owner, investor]) => {
 
     it('contract has token', async () => {
       let balance = await dappToken.balanceOf(tokenFarm.address);
-      assert.equal(balance, '1000000000000000000000000');
+      assert.equal(balance, weiToTokens('1000000'));
     })
   })
 });
