@@ -23,6 +23,9 @@ contract TokenFarm {
 
     // Stakes Tokens (Deposit)
     function stakeTokens(uint _amount) public {
+        // Require amount greater than 0
+        require(_amount > 0, "amount cannot be 0);
+
         // Transfer Fake Dai Tokens to this contract for staking
         // Move the funds on the behalf of the investor
         // address(this) is the address of this contract
