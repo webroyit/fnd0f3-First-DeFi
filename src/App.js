@@ -1,9 +1,13 @@
 import './App.css';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <div className="App">
-      <h1>First DeFi</h1>
+      <Navbar />
+      <div className="container-fluid mt-5">
+        <h1>First DeFi</h1>
+      </div>
     </div>
   );
 }
