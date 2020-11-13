@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Navbar = () => {
+const Navbar = ({ account }) => {
     return (
       <nav className="navbar navbar-dark fixed-top bg-success flex-md-nowrap p-0 shadow">
         <a
@@ -13,7 +13,7 @@ const Navbar = () => {
         <ul className="navbar-nav px-3">
           <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
             <small>
-              <small id="account">0x0</small>
+              <small id="account">{account}</small>
             </small>
           </li>
         </ul>

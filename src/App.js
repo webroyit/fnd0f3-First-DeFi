@@ -4,8 +4,16 @@ import './App.css';
 import Navbar from './components/Navbar';
 
 class App extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      account: ''
+    }
+  }
+
   async componentWillMount(){
     await this.loadWeb3();
+    await this.loadBlockchainData();
   }
 
   // Connect the app to the blockchain
@@ -22,10 +30,17 @@ class App extends Component{
     }
   }
 
+  async loadBlockchainData(){
+    const web3 = window.web3;
+
+    const accounts = await web3.eth.getAccounts();
+    this.setState({ account: accounts[0] });
+  }
+
   render(){
     return (
       <div className="App">
-        <Navbar />
+        <Navbar account={this.state.account}/>
         <div className="container-fluid mt-5">
           <h1>First DeFi</h1>
         </div>
