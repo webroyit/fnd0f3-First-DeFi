@@ -5,6 +5,7 @@ import DappToken from './abis/DappToken.json';
 import TokenFarm from './abis/TokenFarm.json';
 import './App.css';
 import Navbar from './components/Navbar';
+import Main from './components/Main';
 
 class App extends Component{
   constructor(props){
@@ -92,11 +93,18 @@ class App extends Component{
   }
 
   render(){
+    let content;
+    if(this.state.loading){
+      content = <p id="loader" className="text-center">Loading...</p>
+    }else{
+      content = <Main />
+    }
+
     return (
       <div className="App">
         <Navbar account={this.state.account}/>
         <div className="container-fluid mt-5">
-          <h1>First DeFi</h1>
+          {content}
         </div>
       </div>
     );
