@@ -100,7 +100,13 @@ class App extends Component{
         this.setState({ loading: false });
       })
     })
+  }
 
+  unstakeTokens = () => {
+    this.setState({ loading: true });
+    this.state.tokenFarm.methods.unstakeTokens().send({ from: this.state.account }).on('transactionHash', (hash) => {
+      this.setState({ loading: false });
+    })
   }
 
   render(){
@@ -113,6 +119,7 @@ class App extends Component{
         dappTokenBalance={this.state.dappTokenBalance}
         stakingBalance={this.state.stakingBalance}
         stakeTokens={this.stakeTokens}
+        unstakeTokens={this.unstakeTokens}
       />
     }
 
